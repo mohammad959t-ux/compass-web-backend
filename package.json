@@ -1,0 +1,28 @@
+{
+  "name": "compass-web",
+  "private": true,
+  "workspaces": [
+    "compass_site",
+    "compass_admin",
+    "compass_backend",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace compass_site\" \"npm run dev --workspace compass_admin\"",
+    "dev:site": "npm run dev --workspace compass_site",
+    "dev:admin": "npm run dev --workspace compass_admin",
+    "dev:backend": "npm run dev --workspace compass_backend",
+    "dev:all": "concurrently \"npm run dev --workspace compass_site\" \"npm run dev --workspace compass_admin\" \"npm run dev --workspace compass_backend\"",
+    "build": "npm run build --workspace compass_site && npm run build --workspace compass_admin",
+    "export": "npm run export --workspace compass_site && npm run export --workspace compass_admin",
+    "lint": "npm run lint --workspace compass_site && npm run lint --workspace compass_admin"
+  },
+  "devDependencies": {
+    "@esbuild/win32-x64": "^0.27.2",
+    "autoprefixer": "^10.4.19",
+    "concurrently": "^8.2.2",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.4",
+    "typescript": "^5.4.5"
+  }
+}
