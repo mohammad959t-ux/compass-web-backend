@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Router, type Request, type Response } from "express";
 
 import { getReviewLink, submitReviewLink } from "../controllers/publicReviewLink.controller.js";
 import { validate } from "../middlewares/validate.js";
@@ -9,7 +9,7 @@ const router = Router();
 router.get("/review-links/:token", getReviewLink);
 router.post("/review-links/:token", validate(submitReviewSchema), submitReviewLink);
 
-router.post("/reviews/submit", validate(submitReviewSchema), (req, res) => {
+router.post("/reviews/submit", validate(submitReviewSchema), (req: Request, res: Response) => {
   req.params.token = req.body.token;
   return submitReviewLink(req, res);
 });

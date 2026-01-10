@@ -22,7 +22,7 @@ export async function uploadToCloudinary(buffer: Buffer, folder = "compass") {
           secure_url: uploadResult.secure_url,
           public_id: uploadResult.public_id
         });
-      });
+      }) as NodeJS.WritableStream;
       stream.end(buffer);
     }
   );

@@ -1,6 +1,6 @@
 import cors from "cors";
 import cookieParser from "cookie-parser";
-import express from "express";
+import express, { type Request, type Response } from "express";
 
 import { getCorsOrigins } from "./config/cors.js";
 import healthRoutes from "./routes/health.routes.js";
@@ -17,7 +17,7 @@ export function createApp() {
   app.set("trust proxy", 1);
   app.use(
     cors({
-      origin: (origin, callback) => {
+      origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
         if (!origin || allowedOrigins.includes(origin)) {
           callback(null, true);
         } else {
@@ -36,7 +36,7 @@ export function createApp() {
   app.use(reviewLinksRoutes);
   app.use(adminRoutes);
 
-  app.use((req, res) => {
+  app.use((req: Request, res: Response) => {
     res.status(404).json({ message: `Route not found: ${req.method} ${req.path}` });
   });
 
