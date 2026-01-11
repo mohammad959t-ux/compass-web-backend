@@ -13,11 +13,13 @@ export async function getReviewLink(req: Request, res: Response) {
 }
 
 export async function submitReviewLink(req: Request, res: Response) {
-  const { rating, comment, name, role } = req.body as {
+  const { rating, comment, name, role, serviceCategory, project } = req.body as {
     rating: number;
     comment: string;
-    name?: string;
+    name: string;
     role?: string;
+    serviceCategory?: string;
+    project: string;
   };
 
   const result = await validateReviewToken(req.params.token);
@@ -27,14 +29,16 @@ export async function submitReviewLink(req: Request, res: Response) {
   }
 
   const review = await ReviewModel.create({
-    client: name ?? "Client",
-    name: name ?? "Client",
+    client: name,
+    name,
     role: role ?? "Client",
     quote: comment,
     rating,
     status: "pending",
     token: req.params.token,
-    comment
+    comment,
+    serviceCategory,
+    project
   });
 
   await markReviewTokenUsed(req.params.token);

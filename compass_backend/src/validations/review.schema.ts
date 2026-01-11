@@ -5,8 +5,10 @@ export const submitReviewSchema = z.object({
     token: z.string().min(3),
     rating: z.number().min(1).max(5),
     comment: z.string().min(5),
-    name: z.string().optional(),
-    role: z.string().optional()
+    name: z.string().min(2),
+    project: z.string().min(2),
+    role: z.string().optional(),
+    serviceCategory: z.string().optional()
   })
 });
 

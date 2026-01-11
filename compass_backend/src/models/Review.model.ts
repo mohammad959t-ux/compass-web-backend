@@ -11,6 +11,8 @@ export type Review = {
   status: ReviewStatus;
   token: string;
   comment?: string;
+  serviceCategory?: string;
+  project?: string;
 };
 
 const ReviewSchema = new Schema<Review>(
@@ -22,7 +24,9 @@ const ReviewSchema = new Schema<Review>(
     rating: { type: Number, required: true },
     status: { type: String, enum: ["pending", "approved", "archived"], default: "pending" },
     token: { type: String, required: true },
-    comment: String
+    comment: String,
+    serviceCategory: String,
+    project: String
   },
   {
     timestamps: true,
