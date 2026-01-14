@@ -16,6 +16,7 @@ export async function analyticsSnapshot(_req: Request, res: Response) {
     expenses: snapshot.expenses,
     net: snapshot.net,
     outstanding: snapshot.outstanding,
+    chartData: snapshot.chartData,
     openLeads,
     activeProjects
   });
