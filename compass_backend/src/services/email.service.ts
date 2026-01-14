@@ -41,7 +41,7 @@ export async function sendLeadNotification(payload: LeadNotification) {
       to,
       subject,
       html,
-      replyTo: payload.email
+      reply_to: payload.email
     });
 
     return { sent: true, id: data.data?.id };
