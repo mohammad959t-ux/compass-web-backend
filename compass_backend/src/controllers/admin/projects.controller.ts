@@ -18,12 +18,26 @@ export async function createProject(req: Request, res: Response) {
   const project = await ProjectModel.create({
     slug,
     title,
+    titleAr: req.body.titleAr,
+    titleEn: req.body.titleEn,
     name,
+    nameAr: req.body.nameAr,
+    nameEn: req.body.nameEn,
     category: req.body.category,
+    categoryAr: req.body.categoryAr,
+    categoryEn: req.body.categoryEn,
     summary: req.body.summary,
+    summaryAr: req.body.summaryAr,
+    summaryEn: req.body.summaryEn,
     results: toArray(req.body.results),
+    resultsAr: toArray(req.body.resultsAr),
+    resultsEn: toArray(req.body.resultsEn),
     role: req.body.role,
+    roleAr: req.body.roleAr,
+    roleEn: req.body.roleEn,
     outcome: req.body.outcome,
+    outcomeAr: req.body.outcomeAr,
+    outcomeEn: req.body.outcomeEn,
     status: req.body.status,
     owner: req.body.owner,
     budget: req.body.budget ? Number(req.body.budget) : undefined,
@@ -38,6 +52,8 @@ export async function updateProject(req: Request, res: Response) {
   if (update.title && !update.slug) update.slug = slugify(String(update.title));
   if (update.name && !update.slug) update.slug = slugify(String(update.name));
   if (update.results) update.results = toArray(update.results);
+  if (update.resultsAr) update.resultsAr = toArray(update.resultsAr);
+  if (update.resultsEn) update.resultsEn = toArray(update.resultsEn);
   if (update.budget) update.budget = Number(update.budget);
 
   const project = await ProjectModel.findByIdAndUpdate(req.params.id, update, { new: true });
