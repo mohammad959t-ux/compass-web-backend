@@ -6,6 +6,7 @@ import { listProjects, getProjectBySlug } from "../controllers/public/projects.c
 import { listApprovedReviews } from "../controllers/public/reviews.controller.js";
 import { listServiceCategoryCovers } from "../controllers/public/serviceCategories.controller.js";
 import { listServices, getServiceBySlug } from "../controllers/public/services.controller.js";
+import { getTeamMembers } from "../controllers/public/team.controller.js";
 import { validate } from "../middlewares/validate.js";
 import { createLeadSchema } from "../validations/lead.schema.js";
 
@@ -19,6 +20,7 @@ router.get("/packages", listPackages);
 router.get("/packages/:slug", getPackageBySlug);
 router.get("/reviews", listApprovedReviews);
 router.get("/service-categories", listServiceCategoryCovers);
+router.get("/team", getTeamMembers);
 router.post("/leads", validate(createLeadSchema), createLead);
 
 export default router;

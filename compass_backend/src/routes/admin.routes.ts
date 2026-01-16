@@ -41,6 +41,13 @@ import {
 import { createReviewLink, deleteReview, listReviews, updateReview } from "../controllers/admin/reviews.controller.js";
 import { deleteLead, listLeads, updateLead } from "../controllers/admin/leads.controller.js";
 import { analyticsSnapshot } from "../controllers/admin/analytics.controller.js";
+import {
+  createTeamMember,
+  deleteTeamMember,
+  listTeamMembers,
+  reorderTeamMembers,
+  updateTeamMember
+} from "../controllers/admin/team.controller.js";
 import { fetchSettings, updateSettings } from "../controllers/admin/settings.controller.js";
 import { uploadFile } from "../controllers/admin/uploads.controller.js";
 import { authCookieJwt } from "../middlewares/authCookieJwt.js";
@@ -107,6 +114,12 @@ router.post("/admin/review-links", createReviewLink);
 router.get("/admin/leads", listLeads);
 router.patch("/admin/leads/:id", validate(updateLeadSchema), updateLead);
 router.delete("/admin/leads/:id", deleteLead);
+
+router.get("/admin/team", listTeamMembers);
+router.post("/admin/team", createTeamMember);
+router.patch("/admin/team/reorder", reorderTeamMembers);
+router.patch("/admin/team/:id", updateTeamMember);
+router.delete("/admin/team/:id", deleteTeamMember);
 
 router.get("/admin/analytics", rbac(["admin"]), analyticsSnapshot);
 router.get("/admin/settings", rbac(["admin"]), fetchSettings);

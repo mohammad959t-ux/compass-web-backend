@@ -8,5 +8,6 @@ export * from "./Expense.model.js";
 export * from "./Lead.model.js";
 export * from "./Review.model.js";
 export * from "./CalendarEvent.model.js";
+export * from "./TeamMember.model.js";
 export * from "./ReviewToken.model.js";
 export * from "./Setting.model.js";
